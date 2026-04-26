@@ -38,6 +38,11 @@ export const PLAN_START_DATE = '2026-04-26';
 
 const toLocalDate = (date: Date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
+export const getPlanDate = (day: number) => {
+  const [year, month, date] = PLAN_START_DATE.split('-').map(Number);
+  return new Date(year, month - 1, date + day - 1);
+};
+
 export const getCurrentPlanDay = (date = new Date()): number | null => {
   const [year, month, day] = PLAN_START_DATE.split('-').map(Number);
   const start = new Date(year, month - 1, day);

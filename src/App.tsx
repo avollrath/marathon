@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Activity, Check, Database, Download, Dumbbell, Flag, RotateCcw, Timer, Upload, Waves } from 'lucide-react';
 import iconUrl from './icon.svg';
-import { getCurrentPlanDay, trainingPlan, type TrainingDay } from './plan';
+import { getCurrentPlanDay, getPlanDate, trainingPlan, type TrainingDay } from './plan';
 import {
   createSupabaseClient,
   defaultProgressState,
@@ -48,6 +48,14 @@ const formatUpdatedAt = (value: string) =>
     second: '2-digit',
     hour12: false,
   }).format(new Date(value));
+
+const formatPlanDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-GB', {
+    weekday: 'short',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  }).format(date);
 
 function App() {
   const [state, setState] = useState<ProgressState>(() => loadLocalState());
@@ -298,6 +306,7 @@ function App() {
         <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {filteredPlan.map((day) => {
             const isCurrentDay = day.day === currentPlanDay;
+            const planDate = formatPlanDate(getPlanDate(day.day));
 
             return (
             <article
@@ -318,6 +327,7 @@ function App() {
                   <div className="font-mono text-xs uppercase tracking-[0.2em] text-steel">
                     Day {day.day.toString().padStart(2, '0')} {day.label ? `/ ${day.label}` : ''}
                   </div>
+                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-steel">{planDate}</div>
                   <div className="mt-2 flex flex-wrap items-center gap-2">
                     <h2 className="text-xl font-semibold uppercase leading-tight text-white">{day.type}</h2>
                     {isCurrentDay && (
