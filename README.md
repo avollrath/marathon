@@ -38,7 +38,7 @@ VITE_SUPABASE_ANON_KEY=sb_publishable_ejSfQOqhatSOyusZ7_yaHA_O7A824v1
 
 Do not commit `.env`. Only the publishable anon key belongs in client-side Vite configuration. Never use or commit a database password.
 
-Create the Supabase table:
+Create the Supabase table and RLS policies:
 
 ```sql
 create table if not exists training_progress (
@@ -46,9 +46,29 @@ create table if not exists training_progress (
   data jsonb not null,
   updated_at timestamptz not null default now()
 );
+
+alter table training_progress enable row level security;
+
+create policy "Read marathon progress"
+on training_progress for select
+to anon, authenticated
+using (id = 'andre-marathon-2026');
+
+create policy "Create marathon progress"
+on training_progress for insert
+to anon, authenticated
+with check (id = 'andre-marathon-2026');
+
+create policy "Update marathon progress"
+on training_progress for update
+to anon, authenticated
+using (id = 'andre-marathon-2026')
+with check (id = 'andre-marathon-2026');
+
+grant select, insert, update on table training_progress to anon, authenticated;
 ```
 
-The app uses the fixed record id `andre-marathon-2026`. On load it reads localStorage first, then fetches Supabase if configured, compares `lastUpdated`, and keeps the newer state.
+The app uses the fixed record id `andre-marathon-2026`. On load it reads localStorage first, then fetches Supabase if configured, compares `lastUpdated`, and keeps the newer state. This unauthenticated sync model is convenient for a private tracker, but anyone with the publishable key can read or update that one shared record.
 
 ## Backup
 
