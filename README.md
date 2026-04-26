@@ -1,44 +1,67 @@
-# Marathon Control
+# Marathon Control Center
 
-Marathon Control is a single-page React + Vite tracker for a 21-day marathon taper plan. It is offline-first with localStorage persistence and optional Supabase sync.
+![Marathon Control Center preview](src/preview.jpg)
 
-## Local Setup
+Marathon Control Center is a focused 21-day marathon taper dashboard built to track the final weeks before race day. It brings running, gym sessions, rowing, shoe testing, actual kilometre tracking, progress state, backups, and optional Supabase sync into one compact technical interface.
+
+## Why I Built It
+
+I built this as a personal training tool while preparing for a first full marathon. The goal was simple: keep the taper plan clear, reduce friction during the final weeks, and make progress persistent across sessions without turning the workflow into another app to manage.
+
+It is intentionally narrow in scope: a small dashboard for one high-stakes block of training, polished enough to feel deliberate and useful every time it opens.
+
+## Key Features
+
+- 21-day marathon taper plan
+- Run, gym, rowing, rest, and race-day filtering
+- Actual kilometre tracking for completed sessions
+- Persistent progress tracking
+- Supabase sync with localStorage fallback
+- Export and import backup flow
+- Responsive technical dashboard UI
+- Neon industrial visual system
+
+## Design Direction
+
+The visual language is dark, minimal, geometric, and industrial. Thin borders, matte panels, a compact dashboard layout, and neon green-yellow accent states give the app the feel of a precision training instrument without pushing it into a flashy gaming style.
+
+The interface uses glow sparingly for active controls, progress, focus states, and completed actions, keeping the overall experience readable and restrained.
+
+## Tech Stack
+
+- React
+- Vite
+- TypeScript
+- Supabase
+- localStorage
+- Tailwind CSS
+
+## Data Persistence
+
+The app is offline-first. It reads and writes progress to `localStorage` immediately, so the dashboard remains usable without a network connection or Supabase project.
+
+Supabase sync is optional. When `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are provided at build time, the app syncs the shared progress record remotely. Without those variables, it continues to work locally.
+
+## Local Development
 
 ```bash
 npm install
 npm run dev
-```
-
-Build for production:
-
-```bash
 npm run build
 ```
 
-Preview the production build:
+## Environment Variables
+
+Create a local `.env` file from `.env.example` and provide your Supabase values:
 
 ```bash
-npm run preview
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
 ```
 
-## Supabase Sync
+Do not commit `.env`. Only publishable client keys belong in Vite frontend configuration.
 
-The app works fully without Supabase. To enable sync, create a local `.env` file from `.env.example`:
-
-```bash
-cp .env.example .env
-```
-
-Set:
-
-```bash
-VITE_SUPABASE_URL=https://lzavizpusbytyufmpbdq.supabase.co
-VITE_SUPABASE_ANON_KEY=sb_publishable_ejSfQOqhatSOyusZ7_yaHA_O7A824v1
-```
-
-Do not commit `.env`. Only the publishable anon key belongs in client-side Vite configuration. Never use or commit a database password.
-
-Create the Supabase table and RLS policies:
+## Supabase Table
 
 ```sql
 create table if not exists training_progress (
@@ -46,34 +69,12 @@ create table if not exists training_progress (
   data jsonb not null,
   updated_at timestamptz not null default now()
 );
-
-alter table training_progress enable row level security;
-
-create policy "Read marathon progress"
-on training_progress for select
-to anon, authenticated
-using (id = 'andre-marathon-2026');
-
-create policy "Create marathon progress"
-on training_progress for insert
-to anon, authenticated
-with check (id = 'andre-marathon-2026');
-
-create policy "Update marathon progress"
-on training_progress for update
-to anon, authenticated
-using (id = 'andre-marathon-2026')
-with check (id = 'andre-marathon-2026');
-
-grant select, insert, update on table training_progress to anon, authenticated;
 ```
 
-The app uses the fixed record id `andre-marathon-2026`. On load it reads localStorage first, then fetches Supabase if configured, compares `lastUpdated`, and keeps the newer state. This unauthenticated sync model is convenient for a private tracker, but anyone with the publishable key can read or update that one shared record.
+The app stores the progress payload as JSON so the training state can evolve without reshaping the table for every UI change.
 
-## Backup
+## Deployment
 
-Use **Export backup** to download progress as JSON. Use **Import backup** to restore from a JSON backup; the app asks for confirmation before overwriting current progress.
+Marathon Control Center builds as a static Vite app and can be deployed to GitHub Pages or any static host.
 
-## Static Deployment
-
-The app builds to `dist/` and can be deployed on GitHub Pages or any static host. For GitHub Pages, publish the generated `dist` directory with your preferred Pages workflow. Supabase environment variables must be configured in the deployment environment if remote sync is desired.
+Vite environment variables must be available at build time if remote Supabase sync should be enabled in the deployed version.

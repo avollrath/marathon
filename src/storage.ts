@@ -1,11 +1,12 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
-export type Filter = 'All' | 'Runs' | 'Gym' | 'Rest' | 'Race Day';
+export type Filter = 'All' | 'Runs' | 'Rowing' | 'Gym' | 'Rest' | 'Race Day';
 export type SyncStatus = 'Saved locally' | 'Synced' | 'Sync unavailable' | 'Sync error';
 
 export type ProgressState = {
   completedDays: number[];
   customNotes: Record<number, string>;
+  actualDistances: Record<number, number>;
   selectedFilter: Filter;
   lastUpdated: string;
 };
@@ -16,12 +17,18 @@ export const SUPABASE_RECORD_ID = 'andre-marathon-2026';
 export const defaultProgressState = (): ProgressState => ({
   completedDays: [],
   customNotes: {},
+  actualDistances: {},
   selectedFilter: 'All',
   lastUpdated: new Date(0).toISOString(),
 });
 
 const isFilter = (value: unknown): value is Filter =>
-  value === 'All' || value === 'Runs' || value === 'Gym' || value === 'Rest' || value === 'Race Day';
+  value === 'All' ||
+  value === 'Runs' ||
+  value === 'Rowing' ||
+  value === 'Gym' ||
+  value === 'Rest' ||
+  value === 'Race Day';
 
 export const normalizeState = (value: unknown): ProgressState => {
   const fallback = defaultProgressState();
@@ -42,6 +49,14 @@ export const normalizeState = (value: unknown): ProgressState => {
               .map(([day, note]) => [Number(day), note]),
           )
         : fallback.customNotes,
+    actualDistances:
+      candidate.actualDistances && typeof candidate.actualDistances === 'object' && !Array.isArray(candidate.actualDistances)
+        ? Object.fromEntries(
+            Object.entries(candidate.actualDistances)
+              .filter(([day, distance]) => Number.isInteger(Number(day)) && Number(day) >= 1 && Number(day) <= 21 && typeof distance === 'number' && distance >= 0)
+              .map(([day, distance]) => [Number(day), distance]),
+          )
+        : fallback.actualDistances,
     selectedFilter: isFilter(candidate.selectedFilter) ? candidate.selectedFilter : fallback.selectedFilter,
     lastUpdated: typeof candidate.lastUpdated === 'string' ? candidate.lastUpdated : fallback.lastUpdated,
   };

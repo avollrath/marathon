@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,6 +6,8 @@
 
 :root {
   color-scheme: dark;
+  --neon: #d6ff00;
+  --neon-soft: #bfff00;
   font-synthesis: none;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
@@ -19,22 +21,55 @@
 body {
   margin: 0;
   min-width: 320px;
+  font-family: 'Electrolize', ui-sans-serif, system-ui, sans-serif;
   background:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    #111111;
-  background-size: 56px 56px;
+    radial-gradient(circle at 50% 0%, rgba(214, 255, 0, 0.045), transparent 34rem),
+    linear-gradient(rgba(214, 255, 0, 0.024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214, 255, 0, 0.018) 1px, transparent 1px),
+    #0a0a0a;
+  background-size: 100% 100%, 56px 56px, 56px 56px;
 }
 
 button,
+input,
 textarea {
   font: inherit;
 }
 
 button:focus-visible,
+input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #7ea7a6;
+  outline: 2px solid var(--neon);
   outline-offset: 2px;
+}
+
+.neon-fill {
+  background-image: linear-gradient(90deg, #8fb000 0%, #d6ff00 58%, #f4ff8a 100%);
+  box-shadow:
+    0 0 8px rgba(214, 255, 0, 0.6),
+    0 0 16px rgba(214, 255, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 5px rgba(0, 0, 0, 0.55);
+}
+
+.instrument-card {
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    opacity 200ms ease,
+    transform 200ms ease;
+}
+
+.instrument-card:hover {
+  border-color: rgba(214, 255, 0, 0.95);
+  box-shadow:
+    0 0 10px rgba(214, 255, 0, 0.36),
+    0 0 20px rgba(214, 255, 0, 0.18),
+    inset 0 0 0 1px rgba(214, 255, 0, 0.1);
+}
+
+.instrument-card:hover .metric-label {
+  color: var(--neon);
 }
 
 .control-button {
@@ -42,22 +77,24 @@ textarea:focus-visible {
   min-height: 42px;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(214, 255, 0, 0.12);
   background: rgba(255, 255, 255, 0.04);
   padding: 0.65rem 0.9rem;
   color: #cac7bc;
-  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: 'Electrolize', ui-sans-serif, system-ui, sans-serif;
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   transition:
+    box-shadow 200ms ease,
     border-color 160ms ease,
     background 160ms ease,
     color 160ms ease;
 }
 
 .control-button:hover {
-  border-color: rgba(202, 199, 188, 0.35);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(214, 255, 0, 0.72);
+  background: rgba(214, 255, 0, 0.06);
+  box-shadow: 0 0 8px rgba(214, 255, 0, 0.28), 0 0 16px rgba(214, 255, 0, 0.12);
   color: #ffffff;
 }
