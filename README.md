@@ -2,6 +2,8 @@
 
 ![Marathon Control Center preview](src/preview.jpg)
 
+**Live site:** [avollrath.github.io/marathon](https://avollrath.github.io/marathon/)
+
 Marathon Control Center is a focused 21-day marathon taper dashboard built to track the final weeks before race day. It brings running, gym sessions, rowing, shoe testing, actual kilometre tracking, progress state, backups, and optional Supabase sync into one compact technical interface.
 
 ## Why I Built It
