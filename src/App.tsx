@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { type FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { Activity, Check, Database, Download, Dumbbell, Flag, RotateCcw, Timer, Upload, Waves } from 'lucide-react';
 import iconUrl from './icon.svg';
 import { getCurrentPlanDay, getPlanDate, trainingPlan, type TrainingDay } from './plan';
@@ -17,6 +17,7 @@ import {
 } from './storage';
 
 const filters: Filter[] = ['All', 'Runs', 'Rowing', 'Gym', 'Rest', 'Race Day'];
+const UNLOCK_STORAGE_KEY = 'marathon-control-edit-unlocked';
 
 const classifyDay = (day: TrainingDay): Filter[] => {
   const type = day.type.toLowerCase();
@@ -61,11 +62,20 @@ function App() {
   const [state, setState] = useState<ProgressState>(() => loadLocalState());
   const [syncStatus, setSyncStatus] = useState<SyncStatus>('Saved locally');
   const [importError, setImportError] = useState('');
+  const [lockMessage, setLockMessage] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [unlockPromptOpen, setUnlockPromptOpen] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(() => sessionStorage.getItem(UNLOCK_STORAGE_KEY) === 'true');
   const [remoteChecked, setRemoteChecked] = useState(false);
   const [currentDate, setCurrentDate] = useState(() => new Date());
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const dayRefs = useRef<Record<number, HTMLElement | null>>({});
+  const pendingWriteRef = useRef<(() => void) | null>(null);
   const supabase = useMemo(() => createSupabaseClient(), []);
+  const editPassword = (import.meta.env.VITE_EDIT_PASSWORD as string | undefined)?.trim() ?? '';
+  const isEditPasswordConfigured = editPassword.length > 0;
+  const canEdit = isEditPasswordConfigured && isUnlocked;
 
   const currentPlanDay = useMemo(() => getCurrentPlanDay(currentDate), [currentDate]);
   const completedSet = useMemo(() => new Set(state.completedDays), [state.completedDays]);
@@ -122,7 +132,6 @@ function App() {
         }
         setState((current) => {
           const selected = newerState(current, remoteState);
-          saveLocalState(selected);
           return selected;
         });
         setSyncStatus('Synced');
@@ -141,6 +150,10 @@ function App() {
   }, [supabase]);
 
   useEffect(() => {
+    if (!canEdit) {
+      return;
+    }
+
     saveLocalState(state);
 
     if (!supabase) {
@@ -170,45 +183,101 @@ function App() {
     return () => {
       cancelled = true;
     };
-  }, [state, supabase, remoteChecked]);
+  }, [state, supabase, remoteChecked, canEdit, isEditPasswordConfigured]);
+
+  const requestWriteAccess = (writeAction: () => void) => {
+    setImportError('');
+    setLockMessage('');
+    setPasswordError('');
+
+    if (!isEditPasswordConfigured) {
+      setLockMessage('Editing locked, password not configured');
+      return;
+    }
+
+    if (isUnlocked) {
+      writeAction();
+      return;
+    }
+
+    pendingWriteRef.current = writeAction;
+    setPasswordValue('');
+    setUnlockPromptOpen(true);
+  };
+
+  const submitPassword = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (passwordValue === editPassword) {
+      sessionStorage.setItem(UNLOCK_STORAGE_KEY, 'true');
+      setIsUnlocked(true);
+      setUnlockPromptOpen(false);
+      setPasswordValue('');
+      setPasswordError('');
+      const pendingWrite = pendingWriteRef.current;
+      pendingWriteRef.current = null;
+      pendingWrite?.();
+      return;
+    }
+
+    setPasswordError('Incorrect password');
+  };
+
+  const lockEditing = () => {
+    sessionStorage.removeItem(UNLOCK_STORAGE_KEY);
+    pendingWriteRef.current = null;
+    setIsUnlocked(false);
+    setUnlockPromptOpen(false);
+    setPasswordValue('');
+    setPasswordError('');
+    setLockMessage('');
+  };
 
   const updateState = (updater: (current: ProgressState) => ProgressState) => {
     setState((current) => updater({ ...current, lastUpdated: timestamp() }));
   };
 
   const toggleCompleted = (day: number) => {
-    updateState((current) => {
-      const completedDays = current.completedDays.includes(day)
-        ? current.completedDays.filter((value) => value !== day)
-        : [...current.completedDays, day].sort((a, b) => a - b);
-      return { ...current, completedDays };
+    requestWriteAccess(() => {
+      updateState((current) => {
+        const completedDays = current.completedDays.includes(day)
+          ? current.completedDays.filter((value) => value !== day)
+          : [...current.completedDays, day].sort((a, b) => a - b);
+        return { ...current, completedDays };
+      });
     });
   };
 
   const updateActualDistance = (day: number, value: string) => {
-    updateState((current) => {
-      const actualDistances = { ...current.actualDistances };
-      const distance = Number(value);
+    requestWriteAccess(() => {
+      updateState((current) => {
+        const actualDistances = { ...current.actualDistances };
+        const distance = Number(value);
 
-      if (value === '' || !Number.isFinite(distance) || distance < 0) {
-        delete actualDistances[day];
-      } else {
-        actualDistances[day] = distance;
-      }
+        if (value === '' || !Number.isFinite(distance) || distance < 0) {
+          delete actualDistances[day];
+        } else {
+          actualDistances[day] = distance;
+        }
 
-      return { ...current, actualDistances };
+        return { ...current, actualDistances };
+      });
     });
   };
 
   const updateFilter = (selectedFilter: Filter) => {
-    updateState((current) => ({ ...current, selectedFilter }));
+    requestWriteAccess(() => {
+      updateState((current) => ({ ...current, selectedFilter }));
+    });
   };
 
   const resetProgress = () => {
-    if (!window.confirm('Reset completed days and actual distances? This cannot be undone.')) {
-      return;
-    }
-    setState({ ...defaultProgressState(), lastUpdated: timestamp(), selectedFilter: state.selectedFilter });
+    requestWriteAccess(() => {
+      if (!window.confirm('Reset completed days and actual distances? This cannot be undone.')) {
+        return;
+      }
+      setState({ ...defaultProgressState(), lastUpdated: timestamp(), selectedFilter: state.selectedFilter });
+    });
   };
 
   const exportBackup = () => {
@@ -228,6 +297,12 @@ function App() {
       return;
     }
 
+    requestWriteAccess(() => {
+      void applyImportedBackup(file);
+    });
+  };
+
+  const applyImportedBackup = async (file: File) => {
     try {
       const content = await file.text();
       const imported = normalizeState(JSON.parse(content));
@@ -253,6 +328,13 @@ function App() {
               <span>21-day taper system</span>
               <span className="h-px w-8 bg-white/20" />
               <span>{new Date(state.lastUpdated).getTime() > 0 ? `Updated ${formatUpdatedAt(state.lastUpdated)}` : 'No edits yet'}</span>
+              <span className="h-px w-8 bg-white/20" />
+              <span className={canEdit ? 'text-ember drop-shadow-[0_0_6px_rgba(214,255,0,0.45)]' : 'text-steel'}>{canEdit ? 'Unlocked' : 'Read-only'}</span>
+              {canEdit && (
+                <button className="border border-ember/40 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-ember transition hover:bg-ember hover:text-black hover:shadow-neonSoft" onClick={lockEditing} type="button">
+                  Lock
+                </button>
+              )}
             </div>
             <div className="flex items-center gap-4">
               <img alt="" className="h-14 w-14 shrink-0 border border-white/10 object-contain sm:h-20 sm:w-20" src={iconUrl} />
@@ -271,8 +353,50 @@ function App() {
               <Database className="h-4 w-4 text-ember drop-shadow-[0_0_8px_rgba(214,255,0,0.75)]" />
               {syncStatus}
             </div>
+            {!isEditPasswordConfigured && <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-steel">Editing locked, password not configured</div>}
           </div>
         </header>
+
+        {lockMessage && <div className="border border-white/10 bg-black/30 p-3 font-mono text-xs uppercase tracking-[0.16em] text-steel">{lockMessage}</div>}
+
+        {unlockPromptOpen && (
+          <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 px-4 backdrop-blur-sm">
+            <form className="grid w-full max-w-sm gap-4 border border-ember/50 bg-graphite p-5 shadow-neonSoft" onSubmit={submitPassword}>
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-ember">Editing locked</div>
+                <h2 className="mt-2 text-xl font-semibold uppercase leading-tight text-white">Enter edit password</h2>
+              </div>
+              <input
+                autoFocus
+                className="h-11 border border-white/10 bg-black/35 px-3 text-sm text-white outline-none transition-all duration-200 placeholder:text-steel/50 focus:border-ember focus:shadow-neonSoft"
+                onChange={(event) => {
+                  setPasswordValue(event.target.value);
+                  setPasswordError('');
+                }}
+                type="password"
+                value={passwordValue}
+              />
+              {passwordError && <p className="font-mono text-xs uppercase tracking-[0.16em] text-ember">{passwordError}</p>}
+              <div className="flex justify-end gap-2">
+                <button
+                  className="border border-white/10 px-3 py-2 font-mono text-xs uppercase tracking-[0.16em] text-steel transition hover:border-white/30 hover:text-white"
+                  onClick={() => {
+                    pendingWriteRef.current = null;
+                    setUnlockPromptOpen(false);
+                    setPasswordValue('');
+                    setPasswordError('');
+                  }}
+                  type="button"
+                >
+                  Cancel
+                </button>
+                <button className="border border-[#D6FF00] bg-[#D6FF00] px-3 py-2 font-mono text-xs uppercase tracking-[0.16em] text-black shadow-neon transition hover:bg-[#BFFF00]" type="submit">
+                  Unlock
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
 
         <section className="grid gap-4">
           <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">

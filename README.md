@@ -17,6 +17,7 @@ It is intentionally narrow in scope: a small dashboard for one high-stakes block
 - 21-day marathon taper plan
 - Run, gym, rowing, rest, and race-day filtering
 - Actual kilometre tracking for completed sessions
+- Password-gated editing mode for casual public protection
 - Persistent progress tracking
 - Supabase sync with localStorage fallback
 - Export and import backup flow
@@ -44,6 +45,12 @@ The app is offline-first. It reads and writes progress to `localStorage` immedia
 
 Supabase sync is optional. When `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are provided at build time, the app syncs the shared progress record remotely. Without those variables, it continues to work locally.
 
+## Editing Lock
+
+Editing is protected by `VITE_EDIT_PASSWORD`. Public visitors can view the dashboard, but write actions such as completing days, entering actual kilometres, resetting progress, or importing backups require the edit password first.
+
+This is a frontend-only convenience lock, not real authentication. Vite environment variables are included in the built frontend bundle, so this should only be treated as protection against accidental edits. Real protection would require Supabase Auth, stricter Row Level Security, or a backend/Edge Function that validates writes server-side.
+
 ## Local Development
 
 ```bash
@@ -54,12 +61,20 @@ npm run build
 
 ## Environment Variables
 
-Create a local `.env` file from `.env.example` and provide your Supabase values:
+Create a local `.env` file from `.env.example` and provide your values:
 
 ```bash
 VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=
+VITE_EDIT_PASSWORD=
 ```
+
+Setup:
+
+1. Create `.env` locally.
+2. Add `VITE_SUPABASE_URL`.
+3. Add `VITE_SUPABASE_ANON_KEY`.
+4. Add `VITE_EDIT_PASSWORD`.
 
 Do not commit `.env`. Only publishable client keys belong in Vite frontend configuration.
 
@@ -80,3 +95,5 @@ The app stores the progress payload as JSON so the training state can evolve wit
 Marathon Control Center builds as a static Vite app and can be deployed to GitHub Pages or any static host.
 
 Vite environment variables must be available at build time if remote Supabase sync should be enabled in the deployed version.
+
+For GitHub Pages, add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` as repository variables, and add `VITE_EDIT_PASSWORD` as a GitHub Actions secret.
