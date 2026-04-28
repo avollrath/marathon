@@ -12,7 +12,7 @@
     "longRunDay": "No gym, no rowing, no additional training.",
     "gymIntensity": {
       "days_2_to_10": "Moderate, no failure, leave 2-3 reps in reserve.",
-      "days_12_to_16": "Light, reduce volume by 40-60%.",
+      "days_9_to_16": "Light after the 30 km run, reduce volume by 40-60% and avoid soreness.",
       "days_18_to_20": "Optional activation only, no fatigue."
     },
     "rowing": {
@@ -41,68 +41,79 @@
     },
     {
       "day": 3,
-      "type": "marathon pace workout",
-      "distance": "8-10 km",
-      "intensity": "3 x 2 km @ marathon pace",
-      "shoes": "Evo SL"
+      "label": "Tuesday",
+      "type": "easy run",
+      "distance": "6-8 km",
+      "intensity": "very easy",
+      "shoes": "Evo SL or Nimbus 26",
+      "notes": "Legs feel tired and sore, skip intensity and protect the long run."
     },
     {
       "day": 4,
-      "type": "gym + first Zoom Fly test",
-      "distance": "5-6 km",
-      "intensity": "easy",
-      "shoes": "Nike Zoom Fly 6",
+      "label": "Wednesday",
+      "type": "easy run + optional light gym",
+      "distance": "4-5 km",
+      "intensity": "very easy",
+      "shoes": "Evo SL or Nimbus 26",
       "gym": "standard",
-      "gymIntensity": "moderate-light"
+      "gymIntensity": "optional, light only, no failure",
+      "notes": "Skip gym if legs still feel sore."
     },
     {
       "day": 5,
-      "type": "second Zoom Fly test",
-      "distance": "8-10 km",
-      "intensity": "easy + 2-3 km marathon pace",
-      "shoes": "Nike Zoom Fly 6"
+      "label": "Thursday",
+      "type": "easy run",
+      "distance": "5-6 km",
+      "intensity": "very easy",
+      "shoes": "Evo SL or Nimbus 26",
+      "notes": "Keep legs fresh before Zoom Fly testing."
     },
     {
       "day": 6,
-      "type": "key long run",
-      "distance": "24-28 km",
-      "intensity": "easy + last 6-8 km marathon pace",
-      "shoes": "Zoom Fly 6 if comfortable, otherwise Evo SL",
-      "notes": "NO gym, NO rowing"
+      "label": "Friday",
+      "type": "first Zoom Fly 6 test",
+      "distance": "5-6 km",
+      "intensity": "easy",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "First short test. Watch for hotspots, arch pain, calf tightness, or instability."
     },
     {
       "day": 7,
-      "type": "recovery rowing",
-      "distance": "7 km rowing",
-      "duration": "30-35 min",
-      "intensity": "Zone 2",
-      "notes": "Replace easy run with light rowing"
+      "label": "Saturday",
+      "type": "second Zoom Fly 6 test / pre-long-run shakeout",
+      "distance": "4-6 km",
+      "intensity": "very easy, optional 2-3 short strides only if legs feel good",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Do not run 8-10 km. Keep it short to stay fresh for 30 km."
     },
     {
       "day": 8,
-      "type": "gym + easy run",
-      "distance": "7-8 km",
-      "intensity": "easy",
-      "shoes": "Evo SL or Nimbus 26",
-      "gym": "standard",
-      "gymIntensity": "moderate"
+      "label": "Sunday",
+      "type": "key long run",
+      "distance": "30 km",
+      "intensity": "first 20-22 km very easy, next 5-6 km around marathon pace only if feeling good, final km easy",
+      "shoes": "Zoom Fly 6 only if both test runs felt good, otherwise Evo SL",
+      "notes": "First-ever 30 km run. Practice gels, hydration, socks, and race pacing. Stop early if pain or form breaks down. NO gym, NO rowing."
     },
     {
       "day": 9,
-      "type": "marathon pace run",
-      "distance": "10-12 km",
-      "intensity": "5 km marathon pace",
-      "shoes": "Zoom Fly 6 or Evo SL"
+      "label": "Monday",
+      "type": "recovery day",
+      "distance": "0-5 km",
+      "intensity": "rest or very easy recovery only",
+      "shoes": "Nimbus 26 if running",
+      "rowing": "optional",
+      "notes": "Recovery from 30 km is the priority. Optional light rowing only if legs feel better than expected."
     },
     {
       "day": 10,
-      "type": "gym + recovery rowing",
+      "type": "light gym + recovery rowing",
       "distance": "6 km rowing",
       "duration": "25-30 min",
       "intensity": "Zone 2",
       "gym": "standard",
-      "gymIntensity": "light-moderate",
-      "notes": "Replace easy run with rowing"
+      "gymIntensity": "light only, avoid soreness",
+      "notes": "Only row if recovery is normal after the 30 km run."
     },
     {
       "day": 11,
@@ -118,7 +129,7 @@
       "intensity": "easy",
       "shoes": "Nimbus 26 or Evo SL",
       "gym": "standard",
-      "gymIntensity": "light"
+      "gymIntensity": "light, avoid soreness"
     },
     {
       "day": 13,
@@ -132,7 +143,7 @@
       "intensity": "easy + pickups",
       "shoes": "Evo SL",
       "gym": "standard",
-      "gymIntensity": "light"
+      "gymIntensity": "light, avoid soreness"
     },
     {
       "day": 15,
@@ -148,7 +159,7 @@
       "intensity": "easy + strides",
       "shoes": "race shoes",
       "gym": "standard",
-      "gymIntensity": "very light"
+      "gymIntensity": "very light, avoid soreness"
     },
     {
       "day": 17,

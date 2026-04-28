@@ -21,10 +21,11 @@ const UNLOCK_STORAGE_KEY = 'marathon-control-edit-unlocked';
 
 const classifyDay = (day: TrainingDay): Filter[] => {
   const type = day.type.toLowerCase();
-  const isRowing = type.includes('rowing') || day.distance.toLowerCase().includes('rowing');
+  const isRowingOnly = type.includes('rowing') || day.distance.toLowerCase().includes('rowing');
+  const hasRowing = isRowingOnly || day.rowingOptional;
   return [
-    day.distance.trim() !== '0 km' && !isRowing ? 'Runs' : null,
-    isRowing ? 'Rowing' : null,
+    day.distance.trim() !== '0 km' && !isRowingOnly ? 'Runs' : null,
+    hasRowing ? 'Rowing' : null,
     day.gym ? 'Gym' : null,
     type === 'rest' ? 'Rest' : null,
     type === 'race day' ? 'Race Day' : null,
@@ -38,6 +39,21 @@ const timestamp = () => new Date().toISOString();
 const isDistanceDay = (day: TrainingDay) => day.distance.trim() !== '0 km';
 
 const formatDistanceTotal = (value: number) => `${Number(value.toFixed(1)).toString()} km`;
+
+const plannedRunDistance = (day: TrainingDay) => {
+  if (day.type.toLowerCase().includes('rowing') || day.distance.toLowerCase().includes('rowing')) {
+    return 0;
+  }
+
+  const normalized = day.distance.toLowerCase().replace(',', '.');
+  const range = normalized.match(/(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)/);
+  if (range) {
+    return (Number(range[1]) + Number(range[2])) / 2;
+  }
+
+  const single = normalized.match(/(\d+(?:\.\d+)?)/);
+  return single ? Number(single[1]) : 0;
+};
 
 const formatUpdatedAt = (value: string) =>
   new Intl.DateTimeFormat('en-GB', {
@@ -83,7 +99,9 @@ function App() {
   const progressPercent = Math.round((completedCount / trainingPlan.length) * 100);
   const runDays = trainingPlan.filter((day) => classifyDay(day).includes('Runs')).length;
   const rowingDays = trainingPlan.filter((day) => classifyDay(day).includes('Rowing')).length;
+  const restDays = trainingPlan.filter((day) => classifyDay(day).includes('Rest')).length;
   const gymDays = trainingPlan.filter((day) => classifyDay(day).includes('Gym')).length;
+  const plannedDistance = trainingPlan.reduce((total, day) => total + plannedRunDistance(day), 0);
   const completedDistance = trainingPlan.reduce((total, day) => (completedSet.has(day.day) ? total + (state.actualDistances[day.day] ?? 0) : total), 0);
   const filteredPlan = trainingPlan.filter((day) => isVisible(day, state.selectedFilter));
   const currentDayVisible = currentPlanDay ? filteredPlan.some((day) => day.day === currentPlanDay) : false;
@@ -416,13 +434,15 @@ function App() {
             ))}
           </div>
 
-          <div className="grid w-full grid-cols-2 gap-2 border border-white/10 bg-graphite/75 p-3 text-sm shadow-neonInset sm:grid-cols-3 xl:grid-cols-7">
+          <div className="grid w-full grid-cols-2 gap-2 border border-white/10 bg-graphite/75 p-3 text-sm shadow-neonInset sm:grid-cols-3 xl:grid-cols-9">
             <Stat label="Completed" value={completedCount} />
             <Stat label="Remaining" value={trainingPlan.length - completedCount} />
             <Stat label="Run days" value={runDays} />
             <Stat label="Rowing" value={rowingDays} />
+            <Stat label="Rest days" value={restDays} />
             <Stat label="Gym days" value={gymDays} />
-            <Stat label="Total km" value={formatDistanceTotal(completedDistance)} />
+            <Stat label="Plan km" value={formatDistanceTotal(plannedDistance)} />
+            <Stat label="Done km" value={formatDistanceTotal(completedDistance)} />
             <Stat label="Progress" value={`${progressPercent}%`} />
           </div>
         </section>
@@ -431,13 +451,15 @@ function App() {
           {filteredPlan.map((day) => {
             const isCurrentDay = day.day === currentPlanDay;
             const planDate = formatPlanDate(getPlanDate(day.day));
+            const isKeyLongRun = day.type.toLowerCase().includes('key long run');
+            const isRaceDay = day.type.toLowerCase() === 'race day';
 
             return (
             <article
               className={`instrument-card group relative grid min-h-[420px] gap-4 border bg-graphite/85 p-4 shadow-insetLine ${
                 isCurrentDay
                   ? 'border-ember shadow-neonSoft ring-1 ring-ember/45'
-                  : day.day === 6 || day.day === 21
+                  : isKeyLongRun || isRaceDay
                     ? 'border-white/10'
                     : 'border-white/10'
               } ${completedSet.has(day.day) ? 'opacity-70' : ''}`}
@@ -475,10 +497,10 @@ function App() {
                 </button>
               </div>
 
-              {(day.day === 6 || day.day === 21) && (
+              {(isKeyLongRun || isRaceDay) && (
                 <div className="flex items-center gap-2 border border-ember/40 bg-ember/5 px-3 py-2 font-mono text-xs uppercase tracking-[0.16em] text-ember shadow-neonSoft">
-                  {day.day === 21 ? <Flag className="h-4 w-4" /> : <Activity className="h-4 w-4" />}
-                  {day.day === 21 ? 'Race day' : 'Key long run'}
+                  {isRaceDay ? <Flag className="h-4 w-4" /> : <Activity className="h-4 w-4" />}
+                  {isRaceDay ? 'Race day' : 'Key long run'}
                 </div>
               )}
 
@@ -510,7 +532,7 @@ function App() {
                 <div className="border border-white/10 bg-black/25 p-3 transition group-hover:border-ember/45">
                   <div className="mb-2 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-steel">
                     <Waves className="h-4 w-4 text-ember" />
-                    Rowing
+                    {day.rowingOptional ? 'Optional rowing' : 'Rowing'}
                   </div>
                   <div className="grid gap-2 sm:grid-cols-3">
                     <MiniMetric label="Pace" value={day.rowing.intensity} />
