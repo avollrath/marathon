@@ -50,50 +50,47 @@
     },
     {
       "day": 4,
-      "label": "Wednesday",
-      "type": "easy run + optional light gym",
-      "distance": "4-5 km",
-      "intensity": "very easy",
-      "shoes": "Evo SL or Nimbus 26",
-      "gym": "standard",
-      "gymIntensity": "optional, light only, no failure",
-      "notes": "Skip gym if legs still feel sore."
+      "label": "Today / Wednesday",
+      "type": "first Zoom Fly 6 test run",
+      "distance": "5-6 km",
+      "intensity": "easy",
+      "shoes": "Nike Zoom Fly 6"
     },
     {
       "day": 5,
       "label": "Thursday",
-      "type": "easy run",
+      "type": "gym + easy run",
       "distance": "5-6 km",
       "intensity": "very easy",
-      "shoes": "Evo SL or Nimbus 26",
-      "notes": "Keep legs fresh before Zoom Fly testing."
+      "shoes": "Zoom Fly 6 or Nimbus/Evo SL if needed",
+      "gym": "standard"
     },
     {
       "day": 6,
       "label": "Friday",
-      "type": "first Zoom Fly 6 test",
-      "distance": "5-6 km",
-      "intensity": "easy",
+      "type": "second Zoom Fly 6 test run",
+      "distance": "7-9 km",
+      "intensity": "easy + optional 2-3 km at marathon pace if feeling good",
       "shoes": "Nike Zoom Fly 6",
-      "notes": "First short test. Watch for hotspots, arch pain, calf tightness, or instability."
+      "notes": "Second test. Check how shoes feel at slightly higher effort."
     },
     {
       "day": 7,
       "label": "Saturday",
-      "type": "second Zoom Fly 6 test / pre-long-run shakeout",
+      "type": "pre-long-run shakeout",
       "distance": "4-6 km",
-      "intensity": "very easy, optional 2-3 short strides only if legs feel good",
+      "intensity": "very easy",
       "shoes": "Nike Zoom Fly 6",
-      "notes": "Do not run 8-10 km. Keep it short to stay fresh for 30 km."
+      "notes": "Keep it short. Optional 2-3 short strides only if legs feel good."
     },
     {
       "day": 8,
       "label": "Sunday",
       "type": "key long run",
       "distance": "30 km",
-      "intensity": "first 20-22 km very easy, next 5-6 km around marathon pace only if feeling good, final km easy",
+      "intensity": "first 20-22 km very easy (6:30-6:50/km), next 5-6 km around marathon pace only if feeling good, final km easy",
       "shoes": "Zoom Fly 6 only if both test runs felt good, otherwise Evo SL",
-      "notes": "First-ever 30 km run. Practice gels, hydration, socks, and race pacing. Stop early if pain or form breaks down. NO gym, NO rowing."
+      "notes": "First-ever 30 km run. Focus on fueling, hydration, pacing. Stop early if pain or form breakdown occurs. NO gym, NO rowing."
     },
     {
       "day": 9,
