@@ -24,91 +24,120 @@
   "plan": [
     {
       "day": 1,
-      "label": "Recovery (sleep debt)",
-      "type": "rest",
-      "distance": "0 km",
-      "notes": "Full rest. Prioritize sleep and hydration."
+      "label": "Today",
+      "type": "easy run",
+      "distance": "6-8 km",
+      "intensity": "very easy",
+      "shoes": "Evo SL or Nimbus 26"
     },
     {
       "day": 2,
-      "label": "Recovery (sleep debt)",
-      "type": "optional very easy run",
-      "distance": "3-5 km",
-      "intensity": "very easy",
-      "shoes": "Nimbus 26",
-      "notes": "Only run if you feel clearly better. Otherwise rest."
+      "type": "gym + easy run",
+      "distance": "5-6 km",
+      "intensity": "easy",
+      "shoes": "Evo SL or Nimbus 26",
+      "gym": "standard",
+      "gymIntensity": "moderate"
     },
     {
       "day": 3,
+      "label": "Tuesday",
       "type": "easy run",
-      "distance": "5-6 km",
+      "distance": "6-8 km",
       "intensity": "very easy",
-      "shoes": "Nimbus 26 or Evo SL",
-      "notes": "Reintroduce running. Keep HR low."
+      "shoes": "Evo SL or Nimbus 26",
+      "notes": "Legs feel tired and sore, skip intensity and protect the long run."
     },
     {
       "day": 4,
-      "type": "first Zoom Fly 6 test",
+      "label": "Wednesday",
+      "type": "first Zoom Fly 6 test run",
       "distance": "5-6 km",
       "intensity": "easy",
       "shoes": "Nike Zoom Fly 6"
     },
     {
       "day": 5,
+      "label": "Thursday",
       "type": "gym + easy run",
       "distance": "5-6 km",
       "intensity": "very easy",
-      "shoes": "Evo SL or Nimbus 26",
-      "gym": "standard",
-      "gymIntensity": "light"
+      "shoes": "Zoom Fly 6 or Nimbus/Evo SL if needed",
+      "gym": "standard"
     },
     {
       "day": 6,
-      "type": "second Zoom Fly 6 test",
-      "distance": "7-8 km",
-      "intensity": "easy + short MP segment (2 km max if feeling good)",
-      "shoes": "Nike Zoom Fly 6",
-      "notes": "Keep controlled. No hard effort."
+      "label": "Friday",
+      "type": "second Zoom Fly 6 test run",
+      "distance": "7-9 km",
+      "intensity": "easy + optional 2-3 km at marathon pace if feeling good",
+      "shoes": "Nike Zoom Fly 6"
     },
     {
       "day": 7,
+      "label": "Saturday",
       "type": "rest",
-      "distance": "0 km",
-      "notes": "Full rest before long run."
+      "distance": "0 km"
     },
     {
       "day": 8,
-      "type": "shakeout run",
-      "distance": "4-5 km",
-      "intensity": "very easy",
-      "shoes": "Nimbus 26",
-      "notes": "Short and easy only."
+      "label": "Sunday",
+      "type": "rest",
+      "distance": "0 km"
     },
     {
       "day": 9,
-      "type": "rest",
-      "distance": "0 km",
-      "notes": "Final recovery before 30 km."
+      "label": "Monday",
+      "type": "easy run",
+      "distance": "5-7 km",
+      "intensity": "very easy",
+      "shoes": "Nimbus 26"
     },
     {
       "day": 10,
-      "label": "KEY LONG RUN",
-      "type": "long run",
-      "distance": "30 km",
-      "intensity": "first 20 km very easy (HR based), last 5-8 km optional steady if feeling good",
-      "shoes": "Zoom Fly 6 if comfortable, otherwise Evo SL",
-      "notes": "Fuel properly. Hydrate. Stop if pain or abnormal fatigue."
+      "type": "easy run + optional gym",
+      "distance": "5-6 km",
+      "intensity": "very easy",
+      "shoes": "Evo SL or Nimbus 26",
+      "gym": "optional",
+      "gymIntensity": "light"
     },
     {
       "day": 11,
-      "type": "recovery",
-      "distance": "0-5 km",
-      "intensity": "very easy",
-      "shoes": "Nimbus 26",
-      "notes": "Full recovery priority. No gym."
+      "type": "short Zoom Fly tune-up",
+      "distance": "6-7 km",
+      "intensity": "easy + optional 1-2 km at marathon pace",
+      "shoes": "Nike Zoom Fly 6"
     },
     {
       "day": 12,
+      "type": "rest",
+      "distance": "0 km"
+    },
+    {
+      "day": 13,
+      "type": "pre-long-run shakeout",
+      "distance": "4-5 km",
+      "intensity": "very easy",
+      "shoes": "Nimbus 26"
+    },
+    {
+      "day": 14,
+      "label": "KEY LONG RUN",
+      "type": "long run",
+      "distance": "30 km",
+      "intensity": "first 20-22 km very easy, last 5-8 km optional steady",
+      "shoes": "Zoom Fly 6 if comfortable, otherwise Evo SL"
+    },
+    {
+      "day": 15,
+      "type": "recovery",
+      "distance": "0-5 km",
+      "intensity": "very easy",
+      "shoes": "Nimbus 26"
+    },
+    {
+      "day": 16,
       "type": "light gym + easy run",
       "distance": "5-6 km",
       "intensity": "easy",
@@ -117,62 +146,38 @@
       "gymIntensity": "light"
     },
     {
-      "day": 13,
+      "day": 17,
       "type": "medium run",
       "distance": "12-14 km",
       "intensity": "easy",
       "shoes": "Evo SL"
     },
     {
-      "day": 14,
-      "type": "rest",
-      "distance": "0 km"
-    },
-    {
-      "day": 15,
-      "type": "easy run",
-      "distance": "6-8 km",
-      "intensity": "easy",
-      "shoes": "Nimbus 26"
-    },
-    {
-      "day": 16,
-      "type": "short run with strides",
-      "distance": "5 km",
-      "intensity": "easy + 3 strides",
-      "shoes": "race shoes",
-      "gym": "standard",
-      "gymIntensity": "very light"
-    },
-    {
-      "day": 17,
-      "type": "rest",
-      "distance": "0 km"
-    },
-    {
       "day": 18,
-      "type": "shakeout",
-      "distance": "4 km",
-      "intensity": "very easy",
-      "shoes": "race shoes"
+      "type": "rest",
+      "distance": "0 km"
     },
     {
       "day": 19,
-      "type": "rest",
-      "distance": "0 km"
+      "type": "easy run or rest",
+      "distance": "0-5 km",
+      "intensity": "very easy",
+      "shoes": "Nimbus 26",
+      "notes": "Optional. Skip if you feel tired."
     },
     {
       "day": 20,
-      "type": "pre-race",
-      "distance": "3 km",
+      "type": "optional shakeout",
+      "distance": "2-3 km",
       "intensity": "very easy",
-      "shoes": "race shoes"
+      "shoes": "race shoes",
+      "notes": "Optional 1-2 very short strides only if feeling fresh."
     },
     {
       "day": 21,
       "type": "race day",
       "distance": "42.2 km",
-      "intensity": "controlled start, ~6:00/km target",
+      "intensity": "target ~6:00/km, start controlled",
       "shoes": "Zoom Fly 6 if proven, otherwise Evo SL"
     }
   ]
