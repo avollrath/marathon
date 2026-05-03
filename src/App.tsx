@@ -339,14 +339,14 @@ function App() {
 
   return (
     <main className="min-h-screen bg-carbon text-nickel">
-      <section className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-5 sm:px-6 lg:px-8">
+      <section className="mx-auto flex w-full max-w-[1600px] flex-col gap-6 px-4 py-5 sm:px-6 lg:px-8">
         <header className="grid gap-4 border border-white/10 bg-graphite/85 p-4 shadow-insetLine md:grid-cols-[1fr_auto] md:p-6">
           <div>
             <div className="mb-3 flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.24em] text-steel">
               <span>21-day taper system</span>
-              <span className="h-px w-8 bg-white/20" />
+              <span className="w-8 h-px bg-white/20" />
               <span>{new Date(state.lastUpdated).getTime() > 0 ? `Updated ${formatUpdatedAt(state.lastUpdated)}` : 'No edits yet'}</span>
-              <span className="h-px w-8 bg-white/20" />
+              <span className="w-8 h-px bg-white/20" />
               <span className={canEdit ? 'text-ember drop-shadow-[0_0_6px_rgba(214,255,0,0.45)]' : 'text-steel'}>{canEdit ? 'Unlocked' : 'Read-only'}</span>
               {canEdit && (
                 <button className="border border-ember/40 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-ember transition hover:bg-ember hover:text-black hover:shadow-neonSoft" onClick={lockEditing} type="button">
@@ -355,17 +355,17 @@ function App() {
               )}
             </div>
             <div className="flex items-center gap-4">
-              <img alt="" className="h-14 w-14 shrink-0 border border-white/10 object-contain sm:h-20 sm:w-20" src={iconUrl} />
-              <h1 className="text-4xl font-semibold uppercase leading-none text-white sm:text-6xl">Marathon Control Center</h1>
+              <img alt="" className="object-contain border h-14 w-14 shrink-0 border-white/10 sm:h-20 sm:w-20" src={iconUrl} />
+              <h1 className="text-4xl font-semibold leading-none text-white uppercase sm:text-6xl">Marathon Control Center</h1>
             </div>
           </div>
-          <div className="grid min-w-64 gap-3 border border-white/10 bg-black/30 p-4 shadow-neonInset">
+          <div className="grid gap-3 p-4 border min-w-64 border-white/10 bg-black/30 shadow-neonInset">
             <div className="flex items-center justify-between gap-4 font-mono text-xs uppercase text-steel">
               <span>Progress</span>
               <span className="text-nickel transition hover:text-ember hover:drop-shadow-[0_0_7px_rgba(214,255,0,0.55)]">{completedCount}/21</span>
             </div>
             <div className="h-2 border border-white/10 bg-black shadow-[inset_0_1px_5px_rgba(0,0,0,0.85)]">
-              <div className="neon-fill h-full transition-all duration-200 ease-in-out" style={{ width: `${progressPercent}%` }} />
+              <div className="h-full transition-all duration-200 ease-in-out neon-fill" style={{ width: `${progressPercent}%` }} />
             </div>
             <div className="flex items-center gap-2 text-sm text-nickel">
               <Database className="h-4 w-4 text-ember drop-shadow-[0_0_8px_rgba(214,255,0,0.75)]" />
@@ -378,15 +378,15 @@ function App() {
         {lockMessage && <div className="border border-white/10 bg-black/30 p-3 font-mono text-xs uppercase tracking-[0.16em] text-steel">{lockMessage}</div>}
 
         {unlockPromptOpen && (
-          <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 px-4 backdrop-blur-sm">
-            <form className="grid w-full max-w-sm gap-4 border border-ember/50 bg-graphite p-5 shadow-neonSoft" onSubmit={submitPassword}>
+          <div className="fixed inset-0 z-50 grid px-4 place-items-center bg-black/70 backdrop-blur-sm">
+            <form className="grid w-full max-w-sm gap-4 p-5 border border-ember/50 bg-graphite shadow-neonSoft" onSubmit={submitPassword}>
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-ember">Editing locked</div>
-                <h2 className="mt-2 text-xl font-semibold uppercase leading-tight text-white">Enter edit password</h2>
+                <h2 className="mt-2 text-xl font-semibold leading-tight text-white uppercase">Enter edit password</h2>
               </div>
               <input
                 autoFocus
-                className="h-11 border border-white/10 bg-black/35 px-3 text-sm text-white outline-none transition-all duration-200 placeholder:text-steel/50 focus:border-ember focus:shadow-neonSoft"
+                className="px-3 text-sm text-white transition-all duration-200 border outline-none h-11 border-white/10 bg-black/35 placeholder:text-steel/50 focus:border-ember focus:shadow-neonSoft"
                 onChange={(event) => {
                   setPasswordValue(event.target.value);
                   setPasswordError('');
@@ -417,7 +417,7 @@ function App() {
         )}
 
         <section className="grid gap-4">
-          <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6 2xl:grid-cols-6">
             {filters.map((filter) => (
               <button
                 className={`min-h-11 border px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] transition ${
@@ -434,7 +434,7 @@ function App() {
             ))}
           </div>
 
-          <div className="grid w-full grid-cols-2 gap-2 border border-white/10 bg-graphite/75 p-3 text-sm shadow-neonInset sm:grid-cols-3 xl:grid-cols-9">
+          <div className="grid w-full grid-cols-2 gap-2 p-3 text-sm border border-white/10 bg-graphite/75 shadow-neonInset sm:grid-cols-3 xl:grid-cols-9">
             <Stat label="Completed" value={completedCount} />
             <Stat label="Remaining" value={trainingPlan.length - completedCount} />
             <Stat label="Run days" value={runDays} />
@@ -447,7 +447,7 @@ function App() {
           </div>
         </section>
 
-        <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
           {filteredPlan.map((day) => {
             const isCurrentDay = day.day === currentPlanDay;
             const planDate = formatPlanDate(getPlanDate(day.day));
@@ -474,8 +474,8 @@ function App() {
                     Day {day.day.toString().padStart(2, '0')} {day.label ? `/ ${day.label}` : ''}
                   </div>
                   <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-steel">{planDate}</div>
-                  <div className="mt-2 flex flex-wrap items-center gap-2">
-                    <h2 className="text-xl font-semibold uppercase leading-tight text-white">{day.type}</h2>
+                  <div className="flex flex-wrap items-center gap-2 mt-2">
+                    <h2 className="text-xl font-semibold leading-tight text-white uppercase">{day.type}</h2>
                     {isCurrentDay && (
                       <span className="border border-ember bg-ember/10 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ember shadow-neonSoft">
                         Today
@@ -499,7 +499,7 @@ function App() {
 
               {(isKeyLongRun || isRaceDay) && (
                 <div className="flex items-center gap-2 border border-ember/40 bg-ember/5 px-3 py-2 font-mono text-xs uppercase tracking-[0.16em] text-ember shadow-neonSoft">
-                  {isRaceDay ? <Flag className="h-4 w-4" /> : <Activity className="h-4 w-4" />}
+                  {isRaceDay ? <Flag className="w-4 h-4" /> : <Activity className="w-4 h-4" />}
                   {isRaceDay ? 'Race day' : 'Key long run'}
                 </div>
               )}
@@ -516,7 +516,7 @@ function App() {
                 <label className="grid gap-2">
                   <span className="metric-label font-mono text-xs uppercase tracking-[0.16em] text-steel transition-colors duration-200">Actual km</span>
                   <input
-                    className="h-11 border border-white/10 bg-black/35 px-3 text-sm text-white outline-none transition-all duration-200 placeholder:text-steel/50 focus:border-ember focus:shadow-neonSoft"
+                    className="px-3 text-sm text-white transition-all duration-200 border outline-none h-11 border-white/10 bg-black/35 placeholder:text-steel/50 focus:border-ember focus:shadow-neonSoft"
                     inputMode="decimal"
                     min="0"
                     onChange={(event) => updateActualDistance(day.day, event.target.value)}
@@ -529,9 +529,9 @@ function App() {
               )}
 
               {day.rowing && (
-                <div className="border border-white/10 bg-black/25 p-3 transition group-hover:border-ember/45">
+                <div className="p-3 transition border border-white/10 bg-black/25 group-hover:border-ember/45">
                   <div className="mb-2 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-steel">
-                    <Waves className="h-4 w-4 text-ember" />
+                    <Waves className="w-4 h-4 text-ember" />
                     {day.rowingOptional ? 'Optional rowing' : 'Rowing'}
                   </div>
                   <div className="grid gap-2 sm:grid-cols-3">
@@ -543,15 +543,15 @@ function App() {
               )}
 
               {day.gym && (
-                <div className="border border-white/10 bg-black/25 p-3 transition group-hover:border-ember/45">
+                <div className="p-3 transition border border-white/10 bg-black/25 group-hover:border-ember/45">
                   <div className="mb-2 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-steel">
-                    <Dumbbell className="h-4 w-4 text-ember" />
+                    <Dumbbell className="w-4 h-4 text-ember" />
                     Gym
                   </div>
                   {day.gymIntensity && <div className="mb-3 text-sm text-nickel">{day.gymIntensity}</div>}
                   <div className="flex flex-wrap gap-2">
                     {day.gym.map((exercise) => (
-                      <span className="border border-white/10 px-2 py-1 text-xs text-nickel transition group-hover:border-ember/35" key={`${day.day}-${exercise}`}>
+                      <span className="px-2 py-1 text-xs transition border border-white/10 text-nickel group-hover:border-ember/35" key={`${day.day}-${exercise}`}>
                         {exercise}
                       </span>
                     ))}
@@ -564,17 +564,17 @@ function App() {
           })}
         </section>
 
-        <footer className="flex flex-wrap items-center gap-3 border border-white/10 bg-graphite/80 p-4">
+        <footer className="flex flex-wrap items-center gap-3 p-4 border border-white/10 bg-graphite/80">
           <button className="control-button" onClick={resetProgress} type="button">
-            <RotateCcw className="h-4 w-4" />
+            <RotateCcw className="w-4 h-4" />
             Reset progress
           </button>
           <button className="control-button" onClick={exportBackup} type="button">
-            <Download className="h-4 w-4" />
+            <Download className="w-4 h-4" />
             Export backup
           </button>
           <button className="control-button" onClick={() => fileInputRef.current?.click()} type="button">
-            <Upload className="h-4 w-4" />
+            <Upload className="w-4 h-4" />
             Import backup
           </button>
           <input
@@ -593,7 +593,7 @@ function App() {
 
 function Stat({ label, value }: { label: string; value: number | string }) {
   return (
-    <div className="group border border-white/10 bg-black/25 p-3 transition-all duration-200 hover:border-ember/60 hover:shadow-neonSoft">
+    <div className="p-3 transition-all duration-200 border group border-white/10 bg-black/25 hover:border-ember/60 hover:shadow-neonSoft">
       <div className="metric-label font-mono text-[10px] uppercase tracking-[0.18em] text-steel transition-colors duration-200">{label}</div>
       <div className="mt-1 text-2xl font-semibold text-white transition duration-200 group-hover:text-ember group-hover:drop-shadow-[0_0_7px_rgba(214,255,0,0.5)]">{value}</div>
     </div>
@@ -613,7 +613,7 @@ function MiniMetric({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <div className="metric-label flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.16em] text-steel transition-colors duration-200">
-        <Timer className="h-3 w-3" />
+        <Timer className="w-3 h-3" />
         {label}
       </div>
       <div className="mt-1 text-xs leading-relaxed text-nickel">{value}</div>
