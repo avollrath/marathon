@@ -32,7 +32,7 @@ import {
   type SyncStatus,
 } from "./storage";
 
-const filters: Filter[] = ["All", "Runs", "Rowing", "Gym", "Rest", "Race Day"];
+const filters: Filter[] = ["All", "Runs", "Gym", "Rest", "Race Day"];
 const UNLOCK_STORAGE_KEY = "marathon-control-edit-unlocked";
 
 const classifyDay = (day: TrainingDay): Filter[] => {
