@@ -133,9 +133,6 @@ function App() {
   const runDays = trainingPlan.filter((day) =>
     classifyDay(day).includes("Runs"),
   ).length;
-  const rowingDays = trainingPlan.filter((day) =>
-    classifyDay(day).includes("Rowing"),
-  ).length;
   const restDays = trainingPlan.filter((day) =>
     classifyDay(day).includes("Rest"),
   ).length;
@@ -564,7 +561,6 @@ function App() {
               value={trainingPlan.length - completedCount}
             />
             <Stat label="Run days" value={runDays} />
-            <Stat label="Rowing" value={rowingDays} />
             <Stat label="Rest days" value={restDays} />
             <Stat label="Gym days" value={gymDays} />
             <Stat
