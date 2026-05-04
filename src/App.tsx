@@ -537,7 +537,7 @@ function App() {
           </div>
         )}
         <section className="grid gap-4">
-          <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6 2xl:grid-cols-6">
+          <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5 2xl:grid-cols-5">
             {filters.map((filter) => (
               <button
                 className={`min-h-11 border px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] transition ${
@@ -554,7 +554,7 @@ function App() {
             ))}
           </div>
 
-          <div className="grid w-full grid-cols-2 gap-2 p-3 text-sm border border-white/10 bg-graphite/75 shadow-neonInset sm:grid-cols-3 xl:grid-cols-9">
+          <div className="grid w-full grid-cols-2 gap-2 p-3 text-sm border border-white/10 bg-graphite/75 shadow-neonInset sm:grid-cols-3 xl:grid-cols-8">
             <Stat label="Completed" value={completedCount} />
             <Stat
               label="Remaining"
