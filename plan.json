@@ -12,7 +12,7 @@
     "longRunDay": "No gym, no rowing, no additional training.",
     "gymIntensity": {
       "days_2_to_10": "Moderate, no failure, leave 2-3 reps in reserve.",
-      "days_9_to_16": "Light after the 30 km run, reduce volume by 40-60% and avoid soreness.",
+      "days_9_to_16": "Light after the long run, reduce volume by 40-60% and avoid soreness.",
       "days_18_to_20": "Optional activation only, no fatigue."
     },
     "rowing": {
@@ -112,7 +112,8 @@
     {
       "day": 12,
       "type": "rest",
-      "distance": "0 km"
+      "distance": "0 km",
+      "notes": "Full recovery. Focus on hydration and sleep."
     },
     {
       "day": 13,
@@ -123,34 +124,38 @@
     },
     {
       "day": 14,
-      "label": "KEY LONG RUN",
+      "label": "REVISED LONG RUN",
       "type": "long run",
-      "distance": "30 km",
-      "intensity": "first 20-22 km very easy, last 5-8 km optional steady",
-      "shoes": "Zoom Fly 6 if comfortable, otherwise Evo SL"
+      "distance": "12-14 km",
+      "intensity": "Marathon Pace (approx 6:00-6:15 min/km)",
+      "shoes": "Zoom Fly 6",
+      "notes": "DO NOT run 30km. This run is to test race pace and gear only. Save your legs for next week."
     },
     {
       "day": 15,
       "type": "recovery",
-      "distance": "0-5 km",
+      "distance": "0-3 km",
       "intensity": "very easy",
-      "shoes": "Nimbus 26"
+      "shoes": "Nimbus 26",
+      "notes": "Walking is preferred over running today."
     },
     {
       "day": 16,
       "type": "light gym + easy run",
-      "distance": "5-6 km",
+      "distance": "4-5 km",
       "intensity": "easy",
       "shoes": "Evo SL",
       "gym": "standard",
-      "gymIntensity": "light"
+      "gymIntensity": "very light",
+      "notes": "Low volume gym. Zero fatigue allowed."
     },
     {
       "day": 17,
       "type": "medium run",
-      "distance": "12-14 km",
+      "distance": "6-8 km",
       "intensity": "easy",
-      "shoes": "Evo SL"
+      "shoes": "Evo SL",
+      "notes": "Reduced from 12km to keep legs fresh."
     },
     {
       "day": 18,
@@ -160,25 +165,27 @@
     {
       "day": 19,
       "type": "easy run or rest",
-      "distance": "0-5 km",
+      "distance": "3-4 km",
       "intensity": "very easy",
       "shoes": "Nimbus 26",
-      "notes": "Optional. Skip if you feel tired."
+      "notes": "Only run if you feel like you have too much energy."
     },
     {
       "day": 20,
       "type": "optional shakeout",
-      "distance": "2-3 km",
+      "distance": "2 km",
       "intensity": "very easy",
-      "shoes": "race shoes",
-      "notes": "Optional 1-2 very short strides only if feeling fresh."
+      "shoes": "Zoom Fly 6",
+      "notes": "Gentle loosen up. Focus on mental prep."
     },
     {
       "day": 21,
+      "label": "MARATHON DAY",
       "type": "race day",
       "distance": "42.2 km",
-      "intensity": "target ~6:00/km, start controlled",
-      "shoes": "Zoom Fly 6 if proven, otherwise Evo SL"
+      "intensity": "controlled start, target ~6:15/km early on",
+      "shoes": "Zoom Fly 6",
+      "notes": "Start slower than you think. Walk the aid stations. Your goal is km 42, not km 30."
     }
   ]
 }
