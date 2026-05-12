@@ -145,47 +145,49 @@
       "distance": "4-5 km",
       "intensity": "easy",
       "shoes": "Evo SL",
-      "gym": "standard",
-      "gymIntensity": "very light",
       "notes": "Low volume gym. Zero fatigue allowed."
     },
     {
-      "day": 17,
-      "type": "medium run",
-      "distance": "6-8 km",
-      "intensity": "easy",
-      "shoes": "Evo SL",
-      "notes": "Reduced from 12km to keep legs fresh."
-    },
-    {
-      "day": 18,
-      "type": "rest",
-      "distance": "0 km"
-    },
-    {
-      "day": 19,
-      "type": "easy run or rest",
-      "distance": "3-4 km",
-      "intensity": "very easy",
-      "shoes": "Nimbus 26",
-      "notes": "Only run if you feel like you have too much energy."
-    },
-    {
-      "day": 20,
-      "type": "optional shakeout",
-      "distance": "2 km",
-      "intensity": "very easy",
-      "shoes": "Zoom Fly 6",
-      "notes": "Gentle loosen up. Focus on mental prep."
-    },
-    {
-      "day": 21,
-      "label": "MARATHON DAY",
-      "type": "race day",
-      "distance": "42.2 km",
-      "intensity": "controlled start, target ~6:15/km early on",
-      "shoes": "Zoom Fly 6",
-      "notes": "Start slower than you think. Walk the aid stations. Your goal is km 42, not km 30."
-    }
+    "day": 17,
+    "label": "Tuesday",
+    "type": "RECOVERY REST",
+    "distance": "0 km",
+    "intensity": "none",
+    "notes": "Mandatory rest. After yesterday's 5:54 pace, your CNS needs to reset. Focus on mobility and hydration."
+  },
+  {
+    "day": 18,
+    "label": "Wednesday",
+    "type": "Short Tune-up",
+    "distance": "4-5 km",
+    "intensity": "Very Easy (6:40-6:50/km)",
+    "shoes": "Evo SL",
+    "notes": "Keep it slow. Add 2-3 very short strides (100m) at the end just to wake up the legs."
+  },
+  {
+    "day": 19,
+    "label": "Thursday",
+    "type": "rest",
+    "distance": "0 km",
+    "notes": "Total rest. Start high-carb, low-fiber intake today. Drink electrolytes consistently."
+  },
+  {
+    "day": 20,
+    "label": "Friday",
+    "type": "Pre-Race Shakeout",
+    "distance": "2-3 km",
+    "intensity": "Ultra Easy / Jog",
+    "shoes": "Evo SL",
+    "notes": "Final gear check. Visualize the race. Sleep early."
+  },
+  {
+    "day": 21,
+    "label": "MARATHON DAY",
+    "type": "race day",
+    "distance": "42.2 km",
+    "intensity": "Target ~6:15/km",
+    "shoes": "Evo SL (Fresh pair)",
+    "notes": "Stick to the plan. Use every water station. Gel every 40-45 mins. Trust the 1,000km history with these shoes!"
+  }
   ]
 }
