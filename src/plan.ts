@@ -21,13 +21,15 @@ type RowingRules = {
   effort: string;
 };
 
+type GymWorkout = string[] | Record<string, string[]>;
+
 type PlanJsonDay = Omit<TrainingDay, 'gym' | 'rowing' | 'rowingOptional'> & {
-  gym?: 'standard' | string[] | null;
+  gym?: 'standard' | 'optional' | string[] | null;
   rowing?: 'optional' | RowingRules | null;
 };
 
 type PlanJson = {
-  gymWorkout: string[];
+  gymWorkout: GymWorkout;
   rules?: {
     rowing?: RowingRules;
   };
@@ -35,6 +37,9 @@ type PlanJson = {
 };
 
 const typedPlanData = planData as PlanJson;
+
+const getGymWorkout = (gymWorkout: GymWorkout) =>
+  Array.isArray(gymWorkout) ? gymWorkout : Object.values(gymWorkout).flat();
 
 export const PLAN_START_DATE = '2026-04-26';
 
@@ -57,7 +62,7 @@ export const getCurrentPlanDay = (date = new Date()): number | null => {
 
 export const trainingPlan: TrainingDay[] = typedPlanData.plan.map((day) => ({
   ...day,
-  gym: day.gym === 'standard' ? typedPlanData.gymWorkout : Array.isArray(day.gym) ? day.gym : undefined,
+  gym: day.gym === 'standard' ? getGymWorkout(typedPlanData.gymWorkout) : Array.isArray(day.gym) ? day.gym : undefined,
   rowing: day.type.toLowerCase().includes('rowing') || day.rowing === 'optional' ? typedPlanData.rules?.rowing : undefined,
   rowingOptional: day.rowing === 'optional',
 }));
