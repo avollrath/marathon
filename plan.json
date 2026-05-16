@@ -1,25 +1,28 @@
 {
-  "gymWorkout": [
-    "Bench press",
-    "Incline bench press",
-    "Pull-ups",
-    "Seated rows",
-    "Seated dumbbell press",
-    "Biceps curls",
-    "Triceps extensions"
-  ],
+  "gymWorkout": {
+    "Upper Body Day (Mondays)": [
+      "Pull-ups or Cable Lat Pulldowns (3 sets x 8-12 reps)",
+      "Chest Press Machine (3 sets x 8-12 reps - push to close failure)",
+      "Seated Cable Rows (3 sets x 10-12 reps with constant tension)",
+      "Kettlebell Overhead Press (3 sets x 8-10 reps)",
+      "Cable Bicep Curls & Tricep Pushdowns (3 sets x 12 reps)"
+    ],
+    "Lower Body Day (Wednesdays)": [
+      "Kettlebell Goblet Squats or Deficit Reverse Lunges (3 sets x 8-12 reps per leg)",
+      "Kettlebell Romanian Deadlifts (RDLs) (3 sets x 10-12 reps)",
+      "Cable Hip Flexor Pulls (Ankle cuff, driving knee up against low pulley) (3 sets x 12 reps)",
+      "Weighted Kettlebell Calf Raises (4 sets x 15 reps with slow negatives)"
+    ]
+  },
   "rules": {
-    "longRunDay": "No gym, no rowing, no additional training.",
-    "gymIntensity": {
-      "days_2_to_10": "Moderate, no failure, leave 2-3 reps in reserve.",
-      "days_9_to_16": "Light after the long run, reduce volume by 40-60% and avoid soreness.",
-      "days_18_to_20": "Optional activation only, no fatigue."
+    "Target Paces": {
+      "5k Target": "Sub-20:00 (Pace: 3:59 min/km)",
+      "10k Target": "Sub-45:00 (Pace: 4:29 min/km)",
+      "Half Marathon Target": "Sub-1:40:00 (Pace: 4:44 min/km)"
     },
-    "rowing": {
-      "intensity": "Zone 2, conversational pace only",
-      "strokeRate": "18-22 spm",
-      "effort": "Should feel easy, never breathless"
-    }
+    "Gym Strategy for Muscle Growth": "Focus on progressive overload by either adding reps (8 -> 12) or slowing down the negative portion of the lift (Time Under Tension). Train close to failure on machine/cable exercises.",
+    "Nutrition for Body Recomposition": "Maintain a slight caloric deficit (~200-300 kcal) while consuming 1.6 to 2.0g of protein per kg of body weight daily. Keep carbs high around Tuesday speed sessions and Saturday long runs.",
+    "Shoe Selection": "Use Nike Zoom Fly 6 for tempo/threshold and track sessions, Asics Nimbus 26 for easy/recovery days, and Salomon/Saucony Evo SL for short sharp work or final race day."
   },
   "plan": [
     {
@@ -148,46 +151,1026 @@
       "notes": "Low volume gym. Zero fatigue allowed."
     },
     {
-    "day": 17,
-    "label": "Tuesday",
-    "type": "RECOVERY REST",
-    "distance": "0 km",
-    "intensity": "none",
-    "notes": "Mandatory rest. After yesterday's 5:54 pace, your CNS needs to reset. Focus on mobility and hydration."
-  },
-  {
-    "day": 18,
-    "label": "Wednesday",
-    "type": "Short Tune-up",
-    "distance": "4-5 km",
-    "intensity": "Very Easy (6:40-6:50/km)",
-    "shoes": "Evo SL",
-    "notes": "Keep it slow. Add 2-3 very short strides (100m) at the end just to wake up the legs."
-  },
-  {
-    "day": 19,
-    "label": "Thursday",
-    "type": "rest",
-    "distance": "0 km",
-    "notes": "Total rest. Start high-carb, low-fiber intake today. Drink electrolytes consistently."
-  },
-  {
-    "day": 20,
-    "label": "Friday",
-    "type": "Pre-Race Shakeout",
-    "distance": "2-3 km",
-    "intensity": "Ultra Easy / Jog",
-    "shoes": "Evo SL",
-    "notes": "Final gear check. Visualize the race. Sleep early."
-  },
-  {
-    "day": 21,
-    "label": "MARATHON DAY",
-    "type": "race day",
-    "distance": "42.2 km",
-    "intensity": "Target ~6:15/km",
-    "shoes": "Evo SL (Fresh pair)",
-    "notes": "Stick to the plan. Use every water station. Gel every 40-45 mins. Trust the 1,000km history with these shoes!"
-  }
+      "day": 17,
+      "label": "Tuesday",
+      "type": "RECOVERY REST",
+      "distance": "0 km",
+      "intensity": "none",
+      "notes": "Mandatory rest. After yesterday's 5:54 pace, your CNS needs to reset. Focus on mobility and hydration."
+    },
+    {
+      "day": 18,
+      "label": "Wednesday",
+      "type": "Short Tune-up",
+      "distance": "4-5 km",
+      "intensity": "Very Easy (6:40-6:50/km)",
+      "shoes": "Evo SL",
+      "notes": "Keep it slow. Add 2-3 very short strides (100m) at the end just to wake up the legs."
+    },
+    {
+      "day": 19,
+      "label": "Thursday",
+      "type": "rest",
+      "distance": "0 km",
+      "notes": "Total rest. Start high-carb, low-fiber intake today. Drink electrolytes consistently."
+    },
+    {
+      "day": 20,
+      "label": "Friday",
+      "type": "Pre-Race Shakeout",
+      "distance": "2-3 km",
+      "intensity": "Ultra Easy / Jog",
+      "shoes": "Evo SL",
+      "notes": "Final gear check. Visualize the race. Sleep early."
+    },
+    {
+      "day": 21,
+      "label": "MARATHON DAY",
+      "type": "race day",
+      "distance": "42.2 km",
+      "intensity": "Target ~6:15/km",
+      "shoes": "Evo SL (Fresh pair)",
+      "notes": "Stick to the plan. Use every water station. Gel every 40-45 mins. Trust the 1,000km history with these shoes!"
+    },
+    {
+      "day": 22,
+      "date": "2026-05-17",
+      "label": "Sunday",
+      "type": "Absolute Recovery Rest",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Post-Marathon repair phase. Focus on high protein, rehydration, and walking only. Let muscle micro-tears heal completely."
+    },
+    {
+      "day": 23,
+      "date": "2026-05-18",
+      "label": "Monday",
+      "type": "Absolute Recovery Rest",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Post-Marathon repair phase. Focus on high protein, rehydration, and walking only. Let muscle micro-tears heal completely."
+    },
+    {
+      "day": 24,
+      "date": "2026-05-19",
+      "label": "Tuesday",
+      "type": "Absolute Recovery Rest",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Post-Marathon repair phase. Focus on high protein, rehydration, and walking only. Let muscle micro-tears heal completely."
+    },
+    {
+      "day": 25,
+      "date": "2026-05-20",
+      "label": "Wednesday",
+      "type": "Absolute Recovery Rest",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Post-Marathon repair phase. Focus on high protein, rehydration, and walking only. Let muscle micro-tears heal completely."
+    },
+    {
+      "day": 26,
+      "date": "2026-05-21",
+      "label": "Thursday",
+      "type": "Ultra Easy Short Jog",
+      "distance": "3 km",
+      "intensity": "Very Easy / Slow",
+      "shoes": "Asics Nimbus 26",
+      "notes": "First test run to gently flush out legs. Stop immediately if any sharp pain is present."
+    },
+    {
+      "day": 27,
+      "date": "2026-05-22",
+      "label": "Friday",
+      "type": "Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Full active recovery. Stretch and foam roll."
+    },
+    {
+      "day": 28,
+      "date": "2026-05-23",
+      "label": "Saturday",
+      "type": "Easy Base Run",
+      "distance": "5 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": "Keep effort purely conversational."
+    },
+    {
+      "day": 29,
+      "date": "2026-05-24",
+      "label": "Sunday",
+      "type": "Easy Base Run",
+      "distance": "6 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": "Smooth flat course preferred."
+    },
+    {
+      "day": 30,
+      "date": "2026-05-25",
+      "label": "Monday",
+      "type": "Gym: Upper Body (Light reactivation)",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Low volume. Do not push to failure. Focus on form and waking up the nervous system."
+    },
+    {
+      "day": 31,
+      "date": "2026-05-26",
+      "label": "Tuesday",
+      "type": "Easy Base Run",
+      "distance": "6 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 32,
+      "date": "2026-05-27",
+      "label": "Wednesday",
+      "type": "Gym: Lower Body (Mobility & Light weights)",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Focus on movement patterns, bodyweight/light kettlebell squats and stretching."
+    },
+    {
+      "day": 33,
+      "date": "2026-05-28",
+      "label": "Thursday",
+      "type": "Easy Recovery Run",
+      "distance": "5 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 34,
+      "date": "2026-05-29",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": ""
+    },
+    {
+      "day": 35,
+      "date": "2026-05-30",
+      "label": "Saturday",
+      "type": "Aerobic Base Run",
+      "distance": "10 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": "Steady base run to check endurance profile after marathon."
+    },
+    {
+      "day": 36,
+      "date": "2026-05-31",
+      "label": "Sunday",
+      "type": "Easy Base Run",
+      "distance": "6 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 37,
+      "date": "2026-06-01",
+      "label": "Monday",
+      "type": "Gym: Upper Body + Core",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Hypertrophy focus. Push close to failure on chest press and cable rows. High protein day."
+    },
+    {
+      "day": 38,
+      "date": "2026-06-02",
+      "label": "Tuesday",
+      "type": "Track Speed / Intervals",
+      "distance": "8 km total",
+      "intensity": "High Intensity (Target 3:50-3:55 min/km)",
+      "shoes": "Saucony/Salomon Evo SL",
+      "notes": "Workout: 10x 400m at 3:50-3:55/km with 90s walking rest. Focus on explosive leg turnover."
+    },
+    {
+      "day": 39,
+      "date": "2026-06-03",
+      "label": "Wednesday",
+      "type": "Gym: Lower Body",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Heavy kettlebell goblet squats, RDLs, and single-leg lunges. Keep negatives slow (3s) to stimulate hypertrophy."
+    },
+    {
+      "day": 40,
+      "date": "2026-06-04",
+      "label": "Thursday",
+      "type": "Easy Recovery Run",
+      "distance": "6 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": "Flushes out lactate from leg day. Purely for active recovery."
+    },
+    {
+      "day": 41,
+      "date": "2026-06-05",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Full recovery. Let the muscles grow."
+    },
+    {
+      "day": 42,
+      "date": "2026-06-06",
+      "label": "Saturday",
+      "type": "Progressing Long Run",
+      "distance": "10 km",
+      "intensity": "Steady Aerobic",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Maintain baseline aerobic fitness without overloading structural systems."
+    },
+    {
+      "day": 43,
+      "date": "2026-06-07",
+      "label": "Sunday",
+      "type": "Easy Base / Fat-Burn Run",
+      "distance": "8 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": "Excellent for steady-state body recomposition."
+    },
+    {
+      "day": 44,
+      "date": "2026-06-08",
+      "label": "Monday",
+      "type": "Gym: Upper Body + Core",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Hypertrophy focus. Push close to failure on chest press and cable rows. High protein day."
+    },
+    {
+      "day": 45,
+      "date": "2026-06-09",
+      "label": "Tuesday",
+      "type": "Track Speed / Intervals",
+      "distance": "9 km total",
+      "intensity": "High Intensity (Target 3:50-3:55 min/km)",
+      "shoes": "Saucony/Salomon Evo SL",
+      "notes": "Workout: 6x 800m at 3:55/km with 2 min jogging rest. Rebuilds high-velocity aerobic capacity."
+    },
+    {
+      "day": 46,
+      "date": "2026-06-10",
+      "label": "Wednesday",
+      "type": "Gym: Lower Body",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Heavy kettlebell goblet squats, RDLs, and single-leg lunges. Keep negatives slow (3s) to stimulate hypertrophy."
+    },
+    {
+      "day": 47,
+      "date": "2026-06-11",
+      "label": "Thursday",
+      "type": "Easy Recovery Run",
+      "distance": "6 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": "Flushes out lactate from leg day. Purely for active recovery."
+    },
+    {
+      "day": 48,
+      "date": "2026-06-12",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Full recovery. Let the muscles grow."
+    },
+    {
+      "day": 49,
+      "date": "2026-06-13",
+      "label": "Saturday",
+      "type": "Progressing Long Run",
+      "distance": "11 km",
+      "intensity": "Steady Aerobic",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Maintain baseline aerobic fitness without overloading structural systems."
+    },
+    {
+      "day": 50,
+      "date": "2026-06-14",
+      "label": "Sunday",
+      "type": "Easy Base / Fat-Burn Run",
+      "distance": "8 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": "Excellent for steady-state body recomposition."
+    },
+    {
+      "day": 51,
+      "date": "2026-06-15",
+      "label": "Monday",
+      "type": "Gym: Upper Body + Core",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Hypertrophy focus. Push close to failure on chest press and cable rows. High protein day."
+    },
+    {
+      "day": 52,
+      "date": "2026-06-16",
+      "label": "Tuesday",
+      "type": "Track Speed / Intervals",
+      "distance": "9 km total",
+      "intensity": "High Intensity (Target 3:50-3:55 min/km)",
+      "shoes": "Saucony/Salomon Evo SL",
+      "notes": "Workout: 12x 400m at 3:50/km with 60s jogging rest. Triggers muscle remodeling and raw power."
+    },
+    {
+      "day": 53,
+      "date": "2026-06-17",
+      "label": "Wednesday",
+      "type": "Gym: Lower Body",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Heavy kettlebell goblet squats, RDLs, and single-leg lunges. Keep negatives slow (3s) to stimulate hypertrophy."
+    },
+    {
+      "day": 54,
+      "date": "2026-06-18",
+      "label": "Thursday",
+      "type": "Easy Recovery Run",
+      "distance": "6 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": "Flushes out lactate from leg day. Purely for active recovery."
+    },
+    {
+      "day": 55,
+      "date": "2026-06-19",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Full recovery. Let the muscles grow."
+    },
+    {
+      "day": 56,
+      "date": "2026-06-20",
+      "label": "Saturday",
+      "type": "Progressing Long Run",
+      "distance": "12 km",
+      "intensity": "Steady Aerobic",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Maintain baseline aerobic fitness without overloading structural systems."
+    },
+    {
+      "day": 57,
+      "date": "2026-06-21",
+      "label": "Sunday",
+      "type": "Easy Base / Fat-Burn Run",
+      "distance": "8 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": "Excellent for steady-state body recomposition."
+    },
+    {
+      "day": 58,
+      "date": "2026-06-22",
+      "label": "Monday",
+      "type": "Gym: Upper Body + Core",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Hypertrophy focus. Push close to failure on chest press and cable rows. High protein day."
+    },
+    {
+      "day": 59,
+      "date": "2026-06-23",
+      "label": "Tuesday",
+      "type": "Track Speed / Intervals",
+      "distance": "8 km total",
+      "intensity": "High Intensity (Target 3:50-3:55 min/km)",
+      "shoes": "Saucony/Salomon Evo SL",
+      "notes": "Workout: 4x 1km at 3:58/km with 2:30 rest. Teaches body to hold the sub-20 pace over longer chunks."
+    },
+    {
+      "day": 60,
+      "date": "2026-06-24",
+      "label": "Wednesday",
+      "type": "Gym: Lower Body",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Heavy kettlebell goblet squats, RDLs, and single-leg lunges. Keep negatives slow (3s) to stimulate hypertrophy."
+    },
+    {
+      "day": 61,
+      "date": "2026-06-25",
+      "label": "Thursday",
+      "type": "Easy Recovery Run",
+      "distance": "6 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": "Flushes out lactate from leg day. Purely for active recovery."
+    },
+    {
+      "day": 62,
+      "date": "2026-06-26",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Full recovery. Let the muscles grow."
+    },
+    {
+      "day": 63,
+      "date": "2026-06-27",
+      "label": "Saturday",
+      "type": "Progressing Long Run",
+      "distance": "13 km",
+      "intensity": "Steady Aerobic",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Maintain baseline aerobic fitness without overloading structural systems."
+    },
+    {
+      "day": 64,
+      "date": "2026-06-28",
+      "label": "Sunday",
+      "type": "Easy Base / Fat-Burn Run",
+      "distance": "8 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": "Excellent for steady-state body recomposition."
+    },
+    {
+      "day": 65,
+      "date": "2026-06-29",
+      "label": "Monday",
+      "type": "Gym: Upper Body + Core",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Maintain progressive overload. Aim for a tight caloric control today."
+    },
+    {
+      "day": 66,
+      "date": "2026-06-30",
+      "label": "Tuesday",
+      "type": "Speed Endurance / Intervals",
+      "distance": "10 km total",
+      "intensity": "High Intensity (Target 4:20-4:25 min/km)",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Workout: 5x 1km at 4:20/km with 2 min rest. Translates raw speed to 10k pace."
+    },
+    {
+      "day": 67,
+      "date": "2026-07-01",
+      "label": "Wednesday",
+      "type": "Gym: Lower Body",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Incorporate cable hip flexor pulls to improve knee drive for the faster 4:29 10k stride."
+    },
+    {
+      "day": 68,
+      "date": "2026-07-02",
+      "label": "Thursday",
+      "type": "Easy Recovery Run",
+      "distance": "7 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 69,
+      "date": "2026-07-03",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": ""
+    },
+    {
+      "day": 70,
+      "date": "2026-07-04",
+      "label": "Saturday",
+      "type": "Progressing Long Run",
+      "distance": "12 km",
+      "intensity": "Steady Aerobic",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": ""
+    },
+    {
+      "day": 71,
+      "date": "2026-07-05",
+      "label": "Sunday",
+      "type": "Easy Base Run",
+      "distance": "10 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 72,
+      "date": "2026-07-06",
+      "label": "Monday",
+      "type": "Gym: Upper Body + Core",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Maintain progressive overload. Aim for a tight caloric control today."
+    },
+    {
+      "day": 73,
+      "date": "2026-07-07",
+      "label": "Tuesday",
+      "type": "Speed Endurance / Intervals",
+      "distance": "11 km total",
+      "intensity": "High Intensity (Target 4:20-4:25 min/km)",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Workout: 3x 2km at 4:25/km with 3 min jog rest. Teaches lactate clearance."
+    },
+    {
+      "day": 74,
+      "date": "2026-07-08",
+      "label": "Wednesday",
+      "type": "Gym: Lower Body",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Incorporate cable hip flexor pulls to improve knee drive for the faster 4:29 10k stride."
+    },
+    {
+      "day": 75,
+      "date": "2026-07-09",
+      "label": "Thursday",
+      "type": "Easy Recovery Run",
+      "distance": "7 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 76,
+      "date": "2026-07-10",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": ""
+    },
+    {
+      "day": 77,
+      "date": "2026-07-11",
+      "label": "Saturday",
+      "type": "Progressing Long Run",
+      "distance": "13 km",
+      "intensity": "Steady Aerobic",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": ""
+    },
+    {
+      "day": 78,
+      "date": "2026-07-12",
+      "label": "Sunday",
+      "type": "Easy Base Run",
+      "distance": "10 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 79,
+      "date": "2026-07-13",
+      "label": "Monday",
+      "type": "Gym: Upper Body + Core",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Maintain progressive overload. Aim for a tight caloric control today."
+    },
+    {
+      "day": 80,
+      "date": "2026-07-14",
+      "label": "Tuesday",
+      "type": "Speed Endurance / Intervals",
+      "distance": "11 km total",
+      "intensity": "High Intensity (Target 4:20-4:25 min/km)",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Workout: 6x 1km at 4:20/km with 90s rest. Pushing the threshold boundaries."
+    },
+    {
+      "day": 81,
+      "date": "2026-07-15",
+      "label": "Wednesday",
+      "type": "Gym: Lower Body",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Incorporate cable hip flexor pulls to improve knee drive for the faster 4:29 10k stride."
+    },
+    {
+      "day": 82,
+      "date": "2026-07-16",
+      "label": "Thursday",
+      "type": "Easy Recovery Run",
+      "distance": "7 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 83,
+      "date": "2026-07-17",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": ""
+    },
+    {
+      "day": 84,
+      "date": "2026-07-18",
+      "label": "Saturday",
+      "type": "Progressing Long Run",
+      "distance": "14 km",
+      "intensity": "Steady Aerobic",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": ""
+    },
+    {
+      "day": 85,
+      "date": "2026-07-19",
+      "label": "Sunday",
+      "type": "Easy Base Run",
+      "distance": "10 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 86,
+      "date": "2026-07-20",
+      "label": "Monday",
+      "type": "Gym: Upper Body + Core",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Maintain progressive overload. Aim for a tight caloric control today."
+    },
+    {
+      "day": 87,
+      "date": "2026-07-21",
+      "label": "Tuesday",
+      "type": "Speed Endurance / Intervals",
+      "distance": "10 km total",
+      "intensity": "High Intensity (Target 4:20-4:25 min/km)",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Workout: 4x 1.5km at 4:22/km with 2 min rest. High focus on maintaining flat rhythm."
+    },
+    {
+      "day": 88,
+      "date": "2026-07-22",
+      "label": "Wednesday",
+      "type": "Gym: Lower Body",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Incorporate cable hip flexor pulls to improve knee drive for the faster 4:29 10k stride."
+    },
+    {
+      "day": 89,
+      "date": "2026-07-23",
+      "label": "Thursday",
+      "type": "Easy Recovery Run",
+      "distance": "7 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 90,
+      "date": "2026-07-24",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": ""
+    },
+    {
+      "day": 91,
+      "date": "2026-07-25",
+      "label": "Saturday",
+      "type": "Progressing Long Run",
+      "distance": "15 km",
+      "intensity": "Steady Aerobic",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": ""
+    },
+    {
+      "day": 92,
+      "date": "2026-07-26",
+      "label": "Sunday",
+      "type": "Easy Base Run",
+      "distance": "10 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 93,
+      "date": "2026-07-27",
+      "label": "Monday",
+      "type": "Gym: Upper Body + Core",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Final heavy blocks. Maximize muscle fiber tension."
+    },
+    {
+      "day": 94,
+      "date": "2026-07-28",
+      "label": "Tuesday",
+      "type": "Threshold / Tempo Session",
+      "distance": "12 km total",
+      "intensity": "Moderate-High (Target 4:44 min/km)",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Workout: 3x 3km at 4:44 min/km with 3 min jog rest. Structural adaptation to target race pace."
+    },
+    {
+      "day": 95,
+      "date": "2026-07-29",
+      "label": "Wednesday",
+      "type": "Gym: Lower Body",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Heavy single-leg kettlebell exercises. Keep core engaged."
+    },
+    {
+      "day": 96,
+      "date": "2026-07-30",
+      "label": "Thursday",
+      "type": "Easy Recovery Run",
+      "distance": "8 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 97,
+      "date": "2026-07-31",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": ""
+    },
+    {
+      "day": 98,
+      "date": "2026-08-01",
+      "label": "Saturday",
+      "type": "HM Specific Long Run",
+      "distance": "16 km",
+      "intensity": "Mixed Intensity",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Includes 6km locked dead-on at 4:44 min/km in the middle. Rest is easy aerobic."
+    },
+    {
+      "day": 99,
+      "date": "2026-08-02",
+      "label": "Sunday",
+      "type": "Easy Base Run",
+      "distance": "8 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 100,
+      "date": "2026-08-03",
+      "label": "Monday",
+      "type": "Gym: Upper Body + Core",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Final heavy blocks. Maximize muscle fiber tension."
+    },
+    {
+      "day": 101,
+      "date": "2026-08-04",
+      "label": "Tuesday",
+      "type": "Threshold / Tempo Session",
+      "distance": "12 km total",
+      "intensity": "Moderate-High (Target 4:44 min/km)",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Workout: 8km continuous Tempo at 4:44 min/km. Critical dress-rehearsal for psychological stamina."
+    },
+    {
+      "day": 102,
+      "date": "2026-08-05",
+      "label": "Wednesday",
+      "type": "Gym: Lower Body",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Heavy single-leg kettlebell exercises. Keep core engaged."
+    },
+    {
+      "day": 103,
+      "date": "2026-08-06",
+      "label": "Thursday",
+      "type": "Easy Recovery Run",
+      "distance": "8 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 104,
+      "date": "2026-08-07",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": ""
+    },
+    {
+      "day": 105,
+      "date": "2026-08-08",
+      "label": "Saturday",
+      "type": "HM Specific Long Run",
+      "distance": "18 km",
+      "intensity": "Mixed Intensity",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Peak long run. Includes 8km at 4:44 min/km. Simulates the deep fatigue of race day."
+    },
+    {
+      "day": 106,
+      "date": "2026-08-09",
+      "label": "Sunday",
+      "type": "Easy Base Run",
+      "distance": "8 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 107,
+      "date": "2026-08-10",
+      "label": "Monday",
+      "type": "Gym: Upper Body (Taper Volume)",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Reduce sets by 50%. Keep weight steady but avoid any fatigue or failure."
+    },
+    {
+      "day": 108,
+      "date": "2026-08-11",
+      "label": "Tuesday",
+      "type": "Threshold Taper Session",
+      "distance": "9 km total",
+      "intensity": "Moderate-High Intensity",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Workout: 4x 1.5km at 4:44 min/km with 2 min rest. Keeps the engine sharp without training load."
+    },
+    {
+      "day": 109,
+      "date": "2026-08-12",
+      "label": "Wednesday",
+      "type": "Gym: Lower Body (Taper Volume)",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Reduce volume by 50%. Focus purely on light mobility and explosive activation. No soreness allowed."
+    },
+    {
+      "day": 110,
+      "date": "2026-08-13",
+      "label": "Thursday",
+      "type": "Easy Recovery Run",
+      "distance": "6 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 111,
+      "date": "2026-08-14",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": ""
+    },
+    {
+      "day": 112,
+      "date": "2026-08-15",
+      "label": "Saturday",
+      "type": "Easy Long Run (Tapering)",
+      "distance": "12 km",
+      "intensity": "Easy Aerobic",
+      "shoes": "Asics Nimbus 26",
+      "notes": "Controlled, comfortable miles. Letting muscle tension resolve."
+    },
+    {
+      "day": 113,
+      "date": "2026-08-16",
+      "label": "Sunday",
+      "type": "Easy Base Run",
+      "distance": "5 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Asics Nimbus 26",
+      "notes": ""
+    },
+    {
+      "day": 114,
+      "date": "2026-08-17",
+      "label": "Monday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Race week begins. Complete physical relaxation and stretching."
+    },
+    {
+      "day": 115,
+      "date": "2026-08-18",
+      "label": "Tuesday",
+      "type": "Race Pace Sharpening",
+      "distance": "6 km total",
+      "intensity": "Moderate Intensity",
+      "shoes": "Nike Zoom Fly 6",
+      "notes": "Workout: 3x 1km at 4:44 min/km (HM race pace) with 2 min walking rest. Lock in the rhythm."
+    },
+    {
+      "day": 116,
+      "date": "2026-08-19",
+      "label": "Wednesday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "No gym, no heavy activities. Keep glycogen levels high."
+    },
+    {
+      "day": 117,
+      "date": "2026-08-20",
+      "label": "Thursday",
+      "type": "Pre-Race Shakeout Run",
+      "distance": "3 km",
+      "intensity": "Ultra Easy",
+      "shoes": "Evo SL",
+      "notes": "Add 2 short 100m strides at the end to activate neuromuscular connections."
+    },
+    {
+      "day": 118,
+      "date": "2026-08-21",
+      "label": "Friday",
+      "type": "Complete Rest Day",
+      "distance": "0 km",
+      "intensity": "none",
+      "shoes": "none",
+      "notes": "Prepare gear. Hydrate consistently with electrolytes. Sleep early!"
+    },
+    {
+      "day": 119,
+      "date": "2026-08-22",
+      "label": "Saturday",
+      "type": "HALF MARATHON RACE DAY",
+      "distance": "21.1 km",
+      "intensity": "Target Pace: 4:44 min/km",
+      "shoes": "Evo SL",
+      "notes": "GOAL SUB-1:40! Trust your built-in speed endurance and lower body power. Start dead-on at 4:44/km."
+    }
   ]
 }
